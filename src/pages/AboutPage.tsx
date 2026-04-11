@@ -29,7 +29,7 @@ const AboutPage = () => {
           </p>
 
           <p>
-            A Lumière surgiu de uma dualidade que existe em cada pessoa: a suavidade e a intensidade,
+            A Succubus surgiu de uma dualidade que existe em cada pessoa: a suavidade e a intensidade,
             a luz e a sombra, o conforto e a ousadia. Acreditamos que essas forças não se opõem —
             elas se completam.
           </p>
@@ -47,7 +47,7 @@ const AboutPage = () => {
           </p>
 
           <p>
-            Cada peça Lumière é desenhada com obsessão pelo detalhe, produzida com materiais premium
+            Cada peça Succubus é desenhada com obsessão pelo detalhe, produzida com materiais premium
             e pensada para fazer você sentir exatamente quem você é.
           </p>
 

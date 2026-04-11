@@ -18,14 +18,14 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setThemeState] = useState<ThemeMode>(() => {
-    const saved = localStorage.getItem("lumière-theme");
+    const saved = localStorage.getItem("succubus-theme");
     return saved === "white" || saved === "dark" ? saved : null;
   });
 
   const setTheme = (t: ThemeMode) => {
     setThemeState(t);
-    if (t) localStorage.setItem("lumière-theme", t);
-    else localStorage.removeItem("lumière-theme");
+    if (t) localStorage.setItem("succubus-theme", t);
+    else localStorage.removeItem("succubus-theme");
   };
 
   useEffect(() => {

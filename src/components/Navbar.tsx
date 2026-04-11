@@ -24,7 +24,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="font-heading text-2xl md:text-3xl font-light tracking-[0.2em]">
-          LUMIÈRE
+          SUCCUBUS
         </Link>
 
         {/* Desktop nav */}

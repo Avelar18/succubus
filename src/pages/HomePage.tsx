@@ -24,6 +24,8 @@ const HomePage = () => {
         newTitle: "Recém-chegados",
         bestTitle: "Os mais desejados",
         midPhrase: "Atitude não se compra. Mas pode se vestir.",
+        promoTitle: "Coleção Dominion",
+        promoSub: "Novos harnesses e acessórios com até 20% off.",
       }
     : {
         headline: "Onde a leveza encontra a pele",
@@ -32,6 +34,8 @@ const HomePage = () => {
         newTitle: "Novidades",
         bestTitle: "Mais amados",
         midPhrase: "Delicadeza é uma forma de poder.",
+        promoTitle: "Coleção Aurora",
+        promoSub: "Sedas e rendas com frete grátis nesta semana.",
       };
 
   return (
@@ -76,7 +80,7 @@ const HomePage = () => {
       {/* Promo banner */}
       <div className="bg-foreground text-primary-foreground py-3 text-center">
         <p className="font-body text-xs tracking-[0.15em] uppercase">
-          Frete grátis acima de R$ 299 • Até 3x sem juros
+          Frete grátis acima de R$ 299 • Até 3x sem juros • Troca grátis
         </p>
       </div>
 
@@ -90,7 +94,7 @@ const HomePage = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {newProducts.map((p, i) => (
+            {newProducts.slice(0, 3).map((p, i) => (
               <ProductCard key={p.id} product={p} index={i} />
             ))}
           </div>
@@ -110,6 +114,29 @@ const HomePage = () => {
         </motion.p>
       </section>
 
+      {/* Promo section */}
+      <section className="container pb-16">
+        <motion.div
+          className="relative overflow-hidden rounded-lg bg-card border border-border p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div>
+            <span className="font-body text-xs tracking-[0.15em] uppercase text-muted-foreground">Promoção exclusiva</span>
+            <h3 className="font-heading text-2xl md:text-3xl font-light mt-2">{copy.promoTitle}</h3>
+            <p className="text-muted-foreground font-body text-sm mt-2 max-w-md">{copy.promoSub}</p>
+          </div>
+          <Link
+            to="/loja"
+            className="shrink-0 inline-flex items-center gap-3 bg-foreground text-primary-foreground px-8 py-4 font-body text-xs tracking-[0.2em] uppercase hover:bg-foreground/90 transition-colors rounded-sm"
+          >
+            Ver ofertas
+            <ArrowRight size={16} />
+          </Link>
+        </motion.div>
+      </section>
+
       {/* Bestsellers */}
       {bestsellers.length > 0 && (
         <section className="container pb-16 md:pb-24">
@@ -120,12 +147,28 @@ const HomePage = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {bestsellers.map((p, i) => (
+            {bestsellers.slice(0, 3).map((p, i) => (
               <ProductCard key={p.id} product={p} index={i} />
             ))}
           </div>
         </section>
       )}
+
+      {/* Instagram CTA */}
+      <section className="container pb-16 md:pb-24 text-center">
+        <h2 className="font-heading text-2xl md:text-3xl font-light mb-3">Siga-nos no Instagram</h2>
+        <p className="text-muted-foreground font-body text-sm mb-6">
+          @succubus — Inspiração diária para quem vive entre luz e sombra.
+        </p>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 border border-border px-8 py-4 font-body text-xs tracking-[0.2em] uppercase hover:bg-secondary transition-colors rounded-sm"
+        >
+          @succubus
+        </a>
+      </section>
     </div>
   );
 };

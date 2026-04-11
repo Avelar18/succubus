@@ -1,9 +1,15 @@
 import productWhite1 from "@/assets/product-white-1.jpg";
 import productWhite2 from "@/assets/product-white-2.jpg";
 import productWhite3 from "@/assets/product-white-3.jpg";
+import productWhite4 from "@/assets/product-white-4.jpg";
+import productWhite5 from "@/assets/product-white-5.jpg";
+import productWhite6 from "@/assets/product-white-6.jpg";
 import productDark1 from "@/assets/product-dark-1.jpg";
 import productDark2 from "@/assets/product-dark-2.jpg";
 import productDark3 from "@/assets/product-dark-3.jpg";
+import productDark4 from "@/assets/product-dark-4.jpg";
+import productDark5 from "@/assets/product-dark-5.jpg";
+import productDark6 from "@/assets/product-dark-6.jpg";
 
 export interface Product {
   id: string;
@@ -11,7 +17,7 @@ export interface Product {
   price: number;
   originalPrice?: number;
   image: string;
-  category: "harness" | "lingerie";
+  category: "harness" | "lingerie" | "acessorio";
   style: "white" | "dark";
   description: string;
   sizes: string[];
@@ -23,6 +29,7 @@ export interface Product {
 }
 
 export const products: Product[] = [
+  // WHITE collection
   {
     id: "w1",
     name: "Conjunto Seda Celestial",
@@ -64,6 +71,47 @@ export const products: Product[] = [
     reviews: 31,
   },
   {
+    id: "w4",
+    name: "Ligas Pérola",
+    price: 159,
+    image: productWhite4,
+    category: "acessorio",
+    style: "white",
+    description: "Detalhes em pérola e laço de cetim. Um toque de romance que completa qualquer look com delicadeza e charme.",
+    sizes: ["U"],
+    isNew: true,
+    isBestseller: true,
+    rating: 4.9,
+    reviews: 78,
+  },
+  {
+    id: "w5",
+    name: "Robe Nuvem de Seda",
+    price: 399,
+    originalPrice: 459,
+    image: productWhite5,
+    category: "lingerie",
+    style: "white",
+    description: "Seda pura com caimento fluido. Luxo e conforto em cada movimento, como um abraço suave ao amanhecer.",
+    sizes: ["P", "M", "G", "GG"],
+    rating: 4.7,
+    reviews: 56,
+  },
+  {
+    id: "w6",
+    name: "Camisola Etérea",
+    price: 319,
+    image: productWhite6,
+    category: "lingerie",
+    style: "white",
+    description: "Tule bordado à mão com detalhes florais. Transparência delicada que revela com sutileza e encanta com elegância.",
+    sizes: ["P", "M", "G"],
+    limitedStock: true,
+    rating: 4.8,
+    reviews: 34,
+  },
+  // DARK collection
+  {
     id: "d1",
     name: "Harness Obsidian",
     price: 359,
@@ -86,6 +134,7 @@ export const products: Product[] = [
     style: "dark",
     description: "Tiras de couro com acabamento prateado. Atitude em cada fivela, mistério em cada detalhe.",
     sizes: ["P", "M", "G"],
+    isBestseller: true,
     rating: 4.7,
     reviews: 56,
   },
@@ -102,5 +151,45 @@ export const products: Product[] = [
     limitedStock: true,
     rating: 4.8,
     reviews: 42,
+  },
+  {
+    id: "d4",
+    name: "Choker Dominion",
+    price: 129,
+    image: productDark4,
+    category: "acessorio",
+    style: "dark",
+    description: "Couro gravado à mão com argola central dourada. Uma declaração silenciosa de quem comanda o jogo.",
+    sizes: ["U"],
+    isNew: true,
+    rating: 4.9,
+    reviews: 112,
+  },
+  {
+    id: "d5",
+    name: "Calcinha Rendada Noir",
+    price: 189,
+    image: productDark5,
+    category: "lingerie",
+    style: "dark",
+    description: "Renda negra com detalhes metálicos e fechos artesanais. Sensualidade que não se esconde.",
+    sizes: ["P", "M", "G", "GG"],
+    isNew: true,
+    isBestseller: true,
+    rating: 4.8,
+    reviews: 93,
+  },
+  {
+    id: "d6",
+    name: "Bracelete Spike",
+    price: 149,
+    originalPrice: 189,
+    image: productDark6,
+    category: "acessorio",
+    style: "dark",
+    description: "Couro com spikes de metal. Atitude no pulso. Para quem transforma acessórios em armadura.",
+    sizes: ["U"],
+    rating: 4.6,
+    reviews: 67,
   },
 ];

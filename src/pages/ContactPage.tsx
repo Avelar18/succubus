@@ -11,6 +11,9 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (form.name.trim().length < 2) { toast.error("Nome muito curto"); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { toast.error("Email inválido"); return; }
+    if (form.message.trim().length < 10) { toast.error("Mensagem muito curta (mín. 10 caracteres)"); return; }
     toast.success("Mensagem enviada! Responderemos em breve.");
     setForm({ name: "", email: "", message: "" });
   };

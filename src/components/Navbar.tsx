@@ -16,6 +16,7 @@ const Navbar = () => {
     { to: "/loja", label: "Loja" },
     { to: "/sobre", label: "Sobre" },
     { to: "/contato", label: "Contato" },
+    { to: "/meus-pedidos", label: "Pedidos" },
   ];
 
   const toggleTheme = () => setTheme(theme === "dark" ? "white" : "dark");

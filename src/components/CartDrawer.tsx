@@ -2,9 +2,16 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const CartDrawer = () => {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, total, clearCart } = useCart();
+  const navigate = useNavigate();
+
+  const goToCheckout = () => {
+    setIsOpen(false);
+    navigate("/checkout");
+  };
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -75,7 +82,15 @@ const CartDrawer = () => {
                 <span className="text-muted-foreground">Subtotal</span>
                 <span className="font-medium">R$ {total.toFixed(2)}</span>
               </div>
-              <Button className="w-full bg-foreground text-background hover:bg-foreground/90 font-body text-xs tracking-[0.15em] uppercase h-12">
+              {total >= 299 && (
+                <p className="text-xs font-body text-center" style={{ color: "hsl(142, 71%, 45%)" }}>
+                  🎉 Frete grátis!
+                </p>
+              )}
+              <Button
+                onClick={goToCheckout}
+                className="w-full bg-foreground text-background hover:bg-foreground/90 font-body text-xs tracking-[0.15em] uppercase h-12"
+              >
                 Finalizar Compra
               </Button>
               <button

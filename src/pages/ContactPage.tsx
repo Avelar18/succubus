@@ -11,6 +11,9 @@ const ContactPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (form.name.trim().length < 2) { toast.error("Nome muito curto"); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { toast.error("Email inválido"); return; }
+    if (form.message.trim().length < 10) { toast.error("Mensagem muito curta (mín. 10 caracteres)"); return; }
     toast.success("Mensagem enviada! Responderemos em breve.");
     setForm({ name: "", email: "", message: "" });
   };
@@ -43,13 +46,13 @@ const ContactPage = () => {
             </div>
           </a>
           <a
-            href="mailto:contato@lumiere.com"
+            href="mailto:contato@succubus.com"
             className="flex items-center gap-4 p-6 bg-card rounded-lg border border-border hover:border-foreground/20 transition-colors"
           >
             <Mail size={24} className="text-foreground" />
             <div>
               <p className="font-body text-sm font-medium">Email</p>
-              <p className="text-muted-foreground text-xs font-body">contato@lumiere.com</p>
+              <p className="text-muted-foreground text-xs font-body">contato@succubus.com</p>
             </div>
           </a>
         </div>

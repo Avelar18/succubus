@@ -43,13 +43,13 @@ const ContactPage = () => {
             </div>
           </a>
           <a
-            href="mailto:contato@lumiere.com"
+            href="mailto:contato@succubus.com"
             className="flex items-center gap-4 p-6 bg-card rounded-lg border border-border hover:border-foreground/20 transition-colors"
           >
             <Mail size={24} className="text-foreground" />
             <div>
               <p className="font-body text-sm font-medium">Email</p>
-              <p className="text-muted-foreground text-xs font-body">contato@lumiere.com</p>
+              <p className="text-muted-foreground text-xs font-body">contato@succubus.com</p>
             </div>
           </a>
         </div>

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Shield, Truck, RotateCcw, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import whiteHero from "@/assets/white-hero.jpg";
 import darkHero from "@/assets/dark-hero.jpg";
@@ -80,21 +80,38 @@ const HomePage = () => {
       {/* Promo banner */}
       <div className="bg-foreground text-primary-foreground py-3 text-center">
         <p className="font-body text-xs tracking-[0.15em] uppercase">
-          Frete grátis acima de R$ 299 • Até 3x sem juros • Troca grátis
+          Frete grátis acima de R$ 299 • Até 3x sem juros • Troca grátis em 30 dias
         </p>
       </div>
 
+      {/* Trust badges */}
+      <section className="container py-10">
+        <div className="grid grid-cols-3 gap-4">
+          {[
+            { icon: Truck, title: "Frete Grátis", desc: "Acima de R$ 299" },
+            { icon: RotateCcw, title: "Troca Grátis", desc: "Em até 30 dias" },
+            { icon: Shield, title: "Pagamento Seguro", desc: "PIX e cartão" },
+          ].map((item) => (
+            <div key={item.title} className="flex flex-col items-center gap-2 text-center p-4">
+              <item.icon size={20} className="text-muted-foreground" />
+              <span className="font-body text-xs font-medium">{item.title}</span>
+              <span className="font-body text-[10px] text-muted-foreground">{item.desc}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* New products */}
       {newProducts.length > 0 && (
-        <section className="container py-16 md:py-24">
+        <section className="container py-12 md:py-20">
           <div className="flex items-end justify-between mb-10">
             <h2 className="font-heading text-3xl md:text-4xl font-light">{copy.newTitle}</h2>
             <Link to="/loja" className="font-body text-xs tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground flex items-center gap-2">
               Ver tudo <ArrowRight size={14} />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {newProducts.slice(0, 3).map((p, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {newProducts.slice(0, 4).map((p, i) => (
               <ProductCard key={p.id} product={p} index={i} />
             ))}
           </div>
@@ -146,13 +163,42 @@ const HomePage = () => {
               Ver tudo <ArrowRight size={14} />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {bestsellers.slice(0, 3).map((p, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {bestsellers.slice(0, 4).map((p, i) => (
               <ProductCard key={p.id} product={p} index={i} />
             ))}
           </div>
         </section>
       )}
+
+      {/* Reviews section */}
+      <section className="container pb-16 md:pb-24">
+        <h2 className="font-heading text-2xl md:text-3xl font-light text-center mb-10">O que dizem nossas clientes</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { name: "Juliana M.", text: "A qualidade é impressionante. A renda é delicada e o acabamento perfeito. Já estou de olho na próxima peça!", rating: 5 },
+            { name: "Camila S.", text: "O harness Obsidian é simplesmente incrível. Couro macio, fivelas firmes. Me senti poderosa.", rating: 5 },
+            { name: "Ana P.", text: "Comprei o conjunto Seda Celestial e foi amor à primeira vista. Embalagem linda, entrega rápida!", rating: 5 },
+          ].map((review, i) => (
+            <motion.div
+              key={i}
+              className="bg-card border border-border rounded-lg p-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <div className="flex gap-0.5 mb-3">
+                {Array.from({ length: review.rating }).map((_, j) => (
+                  <Star key={j} size={14} className="fill-foreground text-foreground" />
+                ))}
+              </div>
+              <p className="font-body text-sm text-muted-foreground mb-4 italic">"{review.text}"</p>
+              <p className="font-body text-xs font-medium">{review.name}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* Instagram CTA */}
       <section className="container pb-16 md:pb-24 text-center">

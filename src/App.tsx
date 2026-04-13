@@ -10,12 +10,14 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import { lazy, Suspense } from "react";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = lazy(() => import("./pages/Index"));
 const ShopPage = lazy(() => import("./pages/ShopPage"));
 const ProductPage = lazy(() => import("./pages/ProductPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const FAQPage = lazy(() => import("./pages/FAQPage"));
 const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const OrderSuccessPage = lazy(() => import("./pages/OrderSuccessPage"));
 const OrdersPage = lazy(() => import("./pages/OrdersPage"));
@@ -35,6 +37,7 @@ const AppLayout = () => {
 
   return (
     <>
+      <ScrollToTop />
       {hasChosen && <Navbar />}
       {hasChosen && <CartDrawer />}
       <Suspense fallback={<PageLoader />}>
@@ -44,6 +47,7 @@ const AppLayout = () => {
           <Route path="/produto/:id" element={<ProductPage />} />
           <Route path="/sobre" element={<AboutPage />} />
           <Route path="/contato" element={<ContactPage />} />
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/pedido/sucesso" element={<OrderSuccessPage />} />
           <Route path="/meus-pedidos" element={<OrdersPage />} />

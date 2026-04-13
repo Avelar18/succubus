@@ -1,22 +1,25 @@
 import { Link, useLocation } from "react-router-dom";
-import { ShoppingBag, Menu, X, Sun, Moon } from "lucide-react";
+import { ShoppingBag, Menu, X, Sun, Moon, User } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useCart } from "@/contexts/CartContext";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoGold from "@/assets/succubus-logo-gold.png";
+import logoDark from "@/assets/succubus-logo-dark.png";
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const { itemCount, setIsOpen } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const isDark = theme === "dark";
 
   const links = [
     { to: "/", label: "Home" },
     { to: "/loja", label: "Loja" },
     { to: "/sobre", label: "Sobre" },
     { to: "/contato", label: "Contato" },
-    { to: "/meus-pedidos", label: "Pedidos" },
+    { to: "/faq", label: "FAQ" },
   ];
 
   const toggleTheme = () => setTheme(theme === "dark" ? "white" : "dark");
@@ -24,8 +27,14 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="font-heading text-2xl md:text-3xl font-light tracking-[0.2em]">
-          SUCCUBUS
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src={isDark ? logoGold : logoDark}
+            alt="Succubus"
+            className="h-10 md:h-12 w-auto"
+            width={48}
+            height={48}
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -43,14 +52,22 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <button
             onClick={toggleTheme}
             className="p-2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Alternar tema"
           >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            {isDark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
+
+          <Link
+            to="/meus-pedidos"
+            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label="Meus pedidos"
+          >
+            <User size={18} />
+          </Link>
 
           <button
             onClick={() => setIsOpen(true)}
@@ -68,6 +85,7 @@ const Navbar = () => {
           <button
             className="md:hidden p-2 text-muted-foreground"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menu"
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -94,6 +112,13 @@ const Navbar = () => {
                   {l.label}
                 </Link>
               ))}
+              <Link
+                to="/meus-pedidos"
+                onClick={() => setMenuOpen(false)}
+                className="font-body text-sm tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground"
+              >
+                Meus Pedidos
+              </Link>
             </div>
           </motion.div>
         )}

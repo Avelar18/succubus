@@ -4,6 +4,7 @@ import { ShoppingBag, Star } from "lucide-react";
 import { Product } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
 import { Link } from "react-router-dom";
+import WishlistButton from "./WishlistButton";
 
 interface ProductCardProps {
   product: Product;
@@ -33,6 +34,11 @@ const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
             height={533}
           />
           <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
+
+          {/* Wishlist */}
+          <div className="absolute top-3 right-3">
+            <WishlistButton productId={product.id} size={16} />
+          </div>
 
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">

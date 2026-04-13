@@ -2,12 +2,23 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import whiteHero from "@/assets/white-hero.jpg";
 import darkHero from "@/assets/dark-hero.jpg";
+import logoGold from "@/assets/succubus-logo-gold.png";
 
 const SplashScreen = () => {
   const { setTheme } = useTheme();
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col md:flex-row h-screen w-screen overflow-hidden">
+      {/* Logo overlay */}
+      <motion.div
+        className="absolute top-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+      >
+        <img src={logoGold} alt="Succubus" className="h-16 md:h-20 w-auto drop-shadow-lg" />
+      </motion.div>
+
       {/* WHITE side */}
       <motion.div
         className="relative flex-1 cursor-pointer group overflow-hidden"

@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider, useTheme } from "@/contexts/ThemeContext";
 import { CartProvider } from "@/contexts/CartContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -22,6 +23,10 @@ const CheckoutPage = lazy(() => import("./pages/CheckoutPage"));
 const OrderSuccessPage = lazy(() => import("./pages/OrderSuccessPage"));
 const OrdersPage = lazy(() => import("./pages/OrdersPage"));
 const AdminPage = lazy(() => import("./pages/AdminPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const AccountPage = lazy(() => import("./pages/AccountPage"));
+const WishlistPage = lazy(() => import("./pages/WishlistPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -52,6 +57,10 @@ const AppLayout = () => {
           <Route path="/pedido/sucesso" element={<OrderSuccessPage />} />
           <Route path="/meus-pedidos" element={<OrdersPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/cadastro" element={<RegisterPage />} />
+          <Route path="/conta" element={<AccountPage />} />
+          <Route path="/favoritos" element={<WishlistPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
@@ -64,15 +73,17 @@ const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <CartProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <AppLayout />
-            </BrowserRouter>
-          </TooltipProvider>
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <AppLayout />
+              </BrowserRouter>
+            </TooltipProvider>
+          </CartProvider>
+        </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
   </ErrorBoundary>

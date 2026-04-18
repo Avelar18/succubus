@@ -26,6 +26,8 @@ export interface Product {
   limitedStock?: boolean;
   rating: number;
   reviews: number;
+  stock?: number;
+  sku?: string;
 }
 
 export const products: Product[] = [

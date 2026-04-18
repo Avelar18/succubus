@@ -89,6 +89,15 @@ const ContactPage = () => {
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             required
+            maxLength={255}
+            className="bg-secondary border-border font-body"
+          />
+          <Input
+            placeholder="Assunto"
+            value={form.subject}
+            onChange={(e) => setForm({ ...form, subject: e.target.value })}
+            required
+            maxLength={120}
             className="bg-secondary border-border font-body"
           />
           <Textarea
@@ -97,6 +106,7 @@ const ContactPage = () => {
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             required
             rows={5}
+            maxLength={1000}
             className="bg-secondary border-border font-body"
           />
           <Button

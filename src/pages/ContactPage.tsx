@@ -6,16 +6,34 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 
+const SUPPORT_KEY = "succubus-support-tickets";
+
 const ContactPage = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (form.name.trim().length < 2) { toast.error("Nome muito curto"); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) { toast.error("Email inválido"); return; }
+    if (form.subject.trim().length < 3) { toast.error("Assunto muito curto"); return; }
     if (form.message.trim().length < 10) { toast.error("Mensagem muito curta (mín. 10 caracteres)"); return; }
+
+    try {
+      const existing = JSON.parse(localStorage.getItem(SUPPORT_KEY) || "[]");
+      existing.push({
+        id: `tk-${Date.now()}`,
+        name: form.name.trim(),
+        email: form.email.trim().toLowerCase(),
+        subject: form.subject.trim(),
+        message: form.message.trim(),
+        status: "open",
+        createdAt: new Date().toISOString(),
+      });
+      localStorage.setItem(SUPPORT_KEY, JSON.stringify(existing));
+    } catch {}
+
     toast.success("Mensagem enviada! Responderemos em breve.");
-    setForm({ name: "", email: "", message: "" });
+    setForm({ name: "", email: "", subject: "", message: "" });
   };
 
   return (
